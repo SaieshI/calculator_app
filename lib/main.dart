@@ -51,8 +51,8 @@ class CalculatorScreenState extends State<CalculatorScreen> {
             operator = null;
           }
         }
-      } else if (value == 'Clear') { 
-        clearDisplay(); 
+      } else if (value == 'Clear') {
+        clearDisplay();
       } else {
         display = display + value;
       }
@@ -68,7 +68,11 @@ class CalculatorScreenState extends State<CalculatorScreen> {
       case '*':
         return operandOne! * operandTwo!;
       case '/':
-        return operandTwo != 0 ? operandOne! / operandTwo! : 0;
+        if (operandTwo == 0) {
+          return double.infinity;
+        } else {
+          return operandOne! / operandTwo!;
+        }
       default:
         return 0;
     }
@@ -79,7 +83,7 @@ class CalculatorScreenState extends State<CalculatorScreen> {
       display = '';
       operandOne = null;
       operandTwo = null;
-      operator = null; 
+      operator = null;
     });
   }
 
@@ -98,13 +102,9 @@ class CalculatorScreenState extends State<CalculatorScreen> {
                   child: Text(
                     text,
                     style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold
-                      ),
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                )
-              )
-        )
-    );
+                ))));
   }
 
   @override
@@ -127,10 +127,30 @@ class CalculatorScreenState extends State<CalculatorScreen> {
           const SizedBox(height: 20),
           Column(
             children: [
-              Row(children: [buildButton('7'),buildButton('8'),buildButton('9'),buildButton('/')]),
-              Row(children: [buildButton('4'),buildButton('5'),buildButton('6'),buildButton('*')]),
-              Row(children: [buildButton('1'),buildButton('2'),buildButton('3'),buildButton('-')]),
-              Row(children: [buildButton('Clear'), buildButton('0'), buildButton('='), buildButton('+')]),
+              Row(children: [
+                buildButton('7'),
+                buildButton('8'),
+                buildButton('9'),
+                buildButton('/')
+              ]),
+              Row(children: [
+                buildButton('4'),
+                buildButton('5'),
+                buildButton('6'),
+                buildButton('*')
+              ]),
+              Row(children: [
+                buildButton('1'),
+                buildButton('2'),
+                buildButton('3'),
+                buildButton('-')
+              ]),
+              Row(children: [
+                buildButton('Clear'),
+                buildButton('0'),
+                buildButton('='),
+                buildButton('+')
+              ]),
             ],
           ),
         ],
