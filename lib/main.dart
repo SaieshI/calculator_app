@@ -51,6 +51,8 @@ class CalculatorScreenState extends State<CalculatorScreen> {
             operator = null;
           }
         }
+      } else if (value == 'Clear') { 
+        clearDisplay(); 
       } else {
         display = display + value;
       }
@@ -128,7 +130,7 @@ class CalculatorScreenState extends State<CalculatorScreen> {
               Row(children: [buildButton('7'),buildButton('8'),buildButton('9'),buildButton('/')]),
               Row(children: [buildButton('4'),buildButton('5'),buildButton('6'),buildButton('*')]),
               Row(children: [buildButton('1'),buildButton('2'),buildButton('3'),buildButton('-')]),
-              Row(children: [buildButton('0'), buildButton('+'), buildButton('=')]),
+              Row(children: [buildButton('Clear'), buildButton('0'), buildButton('='), buildButton('+')]),
             ],
           ),
         ],
